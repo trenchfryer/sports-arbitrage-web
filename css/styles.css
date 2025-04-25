@@ -1,0 +1,85 @@
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.profit-high {
+    color: green;
+    font-weight: bold;
+}
+
+.profit-medium {
+    color: blue;
+    font-weight: bold;
+}
+
+.profit-low {
+    color: orange;
+    font-weight: bold;
+}
+
+.flash-messages {
+    margin-top: 10px;
+}
+
+.opportunity-card {
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.opportunity-card:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.process-control {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.filters {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.log-output {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    white-space: pre-wrap;
+}
+
+.api-settings {
+    position: sticky;
+    top: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Loading spinner */
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}

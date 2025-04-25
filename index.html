@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Arbitrage System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Sports Arbitrage System</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#settings">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="flash-messages" id="flash-messages">
+            <!-- Flash messages will be dynamically inserted here -->
+        </div>
+        
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="mb-4">Sports Arbitrage Opportunities</h1>
+                    
+                    <!-- API Connection Status -->
+                    <div class="process-control">
+                        <h3>API Connection Status</h3>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-header bg-light">
+                                        <h5>Connection Status</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Status: <span id="api-status-badge" class="badge bg-warning">Checking...</span></p>
+                                        <p id="last-updated">Last updated: Never</p>
+                                        <div class="d-grid gap-2">
+                                            <button id="refresh-data" class="btn btn-primary">Refresh Data</button>
+                                        </div>
+                                        <p class="mt-2 small text-muted">This connects to our API to fetch the latest arbitrage opportunities</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-header bg-light">
+                                        <h5>API Settings</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="api-settings-form">
+                                            <div class="mb-3">
+                                                <label for="api-url" class="form-label">API URL</label>
+                                                <input type="text" class="form-control" id="api-url" value="https://example.com/api">
+                                            </div>
+                                            <div class="d-grid gap-2">
+                                                <button type="submit" class="btn btn-success">Save Settings</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Filters -->
+                    <div class="filters">
+                        <h3>Filter Opportunities</h3>
+                        <form id="filter-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="min_profit" class="form-label">Min Profit (%)</label>
+                                    <input type="number" class="form-control" id="min_profit" name="min_profit" value="" step="0.1" min="0">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="max_profit" class="form-label">Max Profit (%)</label>
+                                    <input type="number" class="form-control" id="max_profit" name="max_profit" value="" step="0.1" min="0">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="sport" class="form-label">Sport</label>
+                                    <select class="form-select" id="sport" name="sport">
+                                        <option value="">All Sports</option>
+                                        <!-- Sport options will be dynamically added here -->
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="bookmaker" class="form-label">Bookmaker</label>
+                                    <select class="form-select" id="bookmaker" name="bookmaker">
+                                        <option value="">All Bookmakers</option>
+                                        <!-- Bookmaker options will be dynamically added here -->
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="bet_type" class="form-label">Bet Type</label>
+                                    <select class="form-select" id="bet_type" name="bet_type">
+                                        <option value="">All Bet Types</option>
+                                        <!-- Bet type options will be dynamically added here -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Apply Filters</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Opportunities List -->
+                    <div class="mt-4">
+                        <h3>Found Opportunities <small id="opportunity-count" class="text-muted">(0 found)</small></h3>
+                        
+                        <div id="opportunities-container" class="row">
+                            <!-- Opportunities will be dynamically inserted here -->
+                        </div>
+                        
+                        <div id="no-opportunities-message" class="alert alert-info">
+                            No arbitrage opportunities found matching your criteria. Try adjusting the filters or refresh the data.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-5 text-center text-muted">
+            <p>&copy; 2025 Sports Arbitrage System</p>
+        </footer>
+    </div>
+
+    <!-- Opportunity Detail Modal -->
+    <div class="modal fade" id="opportunityDetailModal" tabindex="-1" aria-labelledby="opportunityDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="opportunityDetailModalLabel">Opportunity Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="opportunity-detail-content">
+                    <!-- Modal content will be dynamically inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
